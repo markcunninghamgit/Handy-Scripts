@@ -7,6 +7,7 @@
 	slots with 0s' so if you had "111", it would interpret it as "00000111" 
 */
 
+$displayStatistics = true;
 $debug = false;
 
 $string = "01110100011
@@ -26,8 +27,17 @@ foreach ($stringA as $char)
 }
 
 $binaryA = str_split($binary);
+$bits = count($binaryA);
 
-echo "Count: " . count($binaryA) . "\n";
+$leftoverBits = $bits  % 8;
+$bytes = ($bits - $leftoverBits) / 8;
+
+if ($displayStatistics === true)
+{
+	echo "Bits: $bits, Bytes: $bytes, leftover bits: $leftoverBits\n";
+
+}
+
 for ($counter =0; $counter  < count($binaryA); $counter +=8)
 {
 	$binNum = "";
