@@ -1,0 +1,12 @@
+#!/usr/bin/php
+<?php
+
+$string = "";
+while (@$input !== false)
+{
+	$input =  fgets(STDIN);
+	$string .=$input;
+}
+
+echo strtoupper($string);
+?>

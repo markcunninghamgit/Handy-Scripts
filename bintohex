@@ -1,0 +1,20 @@
+#!/usr/bin/php
+<?php
+$string = "";
+while (@$input !== false)
+{
+	$input = fgets(STDIN);
+	$string .= $input;
+}
+
+$dataA = str_split($string);
+foreach ($dataA as $char)
+{
+	$dec = ord($char);
+	$hex = dechex($dec);
+	if (strlen($hex) == 1)
+	{
+		$hex = "0" . $hex;
+	}
+	echo $hex;
+}

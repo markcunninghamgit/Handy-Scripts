@@ -1,0 +1,11 @@
+#!/bin/bash
+#get ssh server fingerprint
+hostname=$1
+if [ "$hostname" == "" ]; then
+	echo "Error, please specify hostname"
+	exit
+fi
+tmpfile=`mktemp`
+ssh-keyscan $hostname > $tmpfile
+ssh-keygen -lvf $tmpfile -F $hostname
+rm $tmpfile

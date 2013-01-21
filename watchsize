@@ -1,0 +1,38 @@
+#!/bin/bash
+# watches a file/dir size and outputs new size when changes
+sleepPeriod=2
+
+if [ -z "$1" ] 
+then
+	echo "Usage: $(basename $0) {filename} [check-period]"; 
+	echo -e "\nCheck-period - default seconds, you can suffix with (m/d/y) as well"
+	# -e to eval \n
+	exit 1
+fi
+
+if [[ ! -e "$1" ]] 
+then
+	echo "debug - file does not exist"
+	exit
+fi
+
+
+if [ -n "$2" ]
+then
+	sleepPeriod="$2"
+fi
+
+while true
+do
+	size=`du -b $1 `
+	if [ "$size" != "$sizeold" ]
+	then 
+		sizeold=$size; 
+		line="`date` - "
+		line+=`du -b $1`
+		echo $line
+	fi
+	sleep 1
+done
+
+

@@ -1,0 +1,3 @@
+#!/bin/bash
+#ln -s with full url
+ln -s "$(readlink -m $1)" "$2"

@@ -1,0 +1,16 @@
+#!/bin/bash
+if [ "$1" == "a" ]; then
+	file=`cat ~/lastphpfile`
+else
+	file="/home/user/tmp/phpfiles/`date | md5sum | cut -f 1 -d ' '`.php"
+	touch $file
+	echo "<?php
+
+
+?>" > $file
+
+fi
+echo $file > ~/lastphpfile
+vim +2 $file
+php $file
+
